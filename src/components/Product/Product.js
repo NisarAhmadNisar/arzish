@@ -38,7 +38,10 @@ export default class Product extends Component {
                   </Link>
 
                   <div className="contentBx">
-                    <h2>Diamond Ring</h2>
+                    <Link to={`/details/${id}`}>
+                      <h2>Diamond Ring</h2>
+                    </Link>
+
                     <div className="price">
                       <h3>
                         Price: <span>10$</span>

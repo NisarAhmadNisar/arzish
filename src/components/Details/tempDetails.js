@@ -78,7 +78,8 @@ const TempDetails = () => {
                           disabled={inCart ? true : false}
                           onClick={() => {
                             value.addToCart(id);
-                            value.openModal(id);
+                            // value.openModal(id);
+                            value.notify();
                           }}
                         >
                           {inCart ? "in cart" : "add to cart"}
