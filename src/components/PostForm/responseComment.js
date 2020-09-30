@@ -4,8 +4,30 @@ class ResponseComment extends React.Component {
   render() {
     return (
       <div>
-        {/* response comments  */}
-        <div className="container">
+        <section className="section-stories">
+          <div className="roww">
+            <div className="story">
+              <figure className="story_shape">
+                <img
+                  className="story_image"
+                  src="https://images.unsplash.com/photo-1592767213971-1f8e24ffbf77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=763&q=80"
+                  alt="gem"
+                />
+                <figcaption className="story_caption">
+                  {this.props.responseName}
+                </figcaption>
+              </figure>
+              <div className="story_text">
+                <h3 className="heading-tertiary u-margin-bottom-small">
+                  {this.props.responseEmail}
+                </h3>
+                <p>{this.props.responseMessage}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* <div className="container">
           <div className="row">
             <div className="col-sm-12">
               <h6>
@@ -19,7 +41,7 @@ class ResponseComment extends React.Component {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

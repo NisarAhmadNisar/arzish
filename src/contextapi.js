@@ -1,29 +1,49 @@
 import React, { Component } from "react";
-import { storeProducts, detailProduct } from "./data";
+import { detailProduct } from "./data";
+import axios from "axios";
+import UIkit from "uikit";
 
 const ProductContext = React.createContext();
 //provider
 //consumer
 
 export default class ProductProvider extends Component {
+  async componentDidMount() {
+    try {
+      const productsRes = await axios({
+        method: "GET",
+        url: "/api/products"
+      });
+      const storeProducts = productsRes.data;
+      this.setState({
+        storeProducts
+      });
+      this.setProducts();
+    } catch (err) {
+      console.log("GEt products /shop", err);
+      return err.response;
+    }
+  }
+
+  // componentDidMount() {}
   state = {
     products: [],
-    detailProduct: detailProduct,
+    storeProducts: [],
+    detailProduct: {},
     cart: [],
     modalOpen: false,
     modalProduct: detailProduct,
     cartTotal: 0,
     cartSubTotal: 0,
-    cartTax: 0
+    cartTax: 0,
+    search: ""
   };
-  componentDidMount() {
-    this.setProducts();
-  }
+
   // the setProducts will get values from the db/file so that we dont modify the original db data
   // - imp if original data is needed at a later time
   setProducts = () => {
     let temProducts = [];
-    storeProducts.forEach(item => {
+    this.state.storeProducts.forEach(item => {
       const singleItem = { ...item };
       temProducts = [...temProducts, singleItem];
     });
@@ -54,7 +74,10 @@ export default class ProductProvider extends Component {
     product.total = price;
     this.setState(
       () => {
-        return { products: tempProducts, cart: [...this.state.cart, product] };
+        return {
+          products: tempProducts,
+          cart: [...this.state.cart, product]
+        };
       },
       () => {
         // call back function
@@ -168,6 +191,20 @@ export default class ProductProvider extends Component {
     });
   };
 
+  //Search Products
+  updateSearch = e => {
+    this.setState({ search: e.target.value.substr(0, 20) });
+  };
+
+  notify = () => {
+    UIkit.notification({
+      message: "<span uk-icon='icon: check'></span> Item added to the cart!",
+      status: "success",
+      pos: "top-center",
+      timeout: 2500
+    });
+  };
+
   //Render method
   render() {
     return (
@@ -181,7 +218,9 @@ export default class ProductProvider extends Component {
           increment: this.increment,
           decrement: this.decrement,
           removeItem: this.removeItem,
-          clearCart: this.clearCart
+          clearCart: this.clearCart,
+          updateSearch: this.updateSearch,
+          notify: this.notify
         }}
       >
         {this.props.children}

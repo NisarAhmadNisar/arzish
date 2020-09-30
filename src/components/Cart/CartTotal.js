@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Paypal from "../Paypal/Paypal";
+
 export default function CartTotal({ value }) {
   const { cartSubTotal, cartTotal, cartTax, clearCart } = value;
   return (
@@ -30,6 +32,11 @@ export default function CartTotal({ value }) {
               <span className="text-title">total :</span>
               <strong>$ {cartTotal}</strong>
             </h5>
+            <Link to="/shippingaddress">
+              <button className="btn btn-outline-primary text-uppercase text-center px-1 mb-4">
+                Continue to Checkout
+              </button>
+            </Link>
           </div>
         </div>
       </div>

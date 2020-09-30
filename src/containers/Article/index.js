@@ -16,46 +16,35 @@ const Article = () => {
         const articleId = article.id;
         const allcomments = article;
         return (
-          <div>
-            <div
-              id="banner"
-              className="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover 
-                    uk-light uk-padding uk-margin"
-              data-src={
-                process.env.REACT_APP_BACKEND_URL + article.image[0].url
-              }
-              data-srcset={
-                process.env.REACT_APP_BACKEND_URL + article.image[0].url
-              }
-              data-uk-img
-            >
+          <div className="container">
+            <div className="row">
               <h1>{article.title}</h1>
-            </div>
-            <div className="container">
+
+              {/* <p className="paragraph">{article.published_at}</p> */}
+
+              <img
+                src={process.env.REACT_APP_BACKEND_URL + article.image[0].url}
+                data-srcset={
+                  process.env.REACT_APP_BACKEND_URL + article.image[0].url
+                }
+                style={{
+                  width: "97.5%",
+                  height: "40rem"
+                }}
+                alt="Photo"
+              />
+
               <div>
-                <ReactMarkdown source={article.content} />
-                <p>{article.published_at}</p>
-
-                <div className="rating">
-                  <input type="radio" name="star" id="star1" />
-                  <label htmlFor="star1"></label>
-                  <input type="radio" name="star" id="star2" />
-                  <label htmlFor="star2"></label>
-                  <input type="radio" name="star" id="star3" />
-                  <label htmlFor="star3"></label>
-                  <input type="radio" name="star" id="star4" />
-                  <label htmlFor="star4"></label>
-                  <input type="radio" name="star" id="star5" />
-                  <label htmlFor="star5"></label>
-                </div>
+                <p className="paragraph">{article.content}</p>
               </div>
-              <h2 className="text-bright">
-                <strong>Comments:</strong>
-              </h2>
+              <div>
+                <h2 className="header-tertiary u-margin-top-medium">
+                  Comments:
+                </h2>
+              </div>
+              <AllComments allcomments={allcomments} />
+              <PostForm articleId={articleId} />
             </div>
-
-            <AllComments allcomments={allcomments} />
-            <PostForm articleId={articleId} />
           </div>
         );
       }}

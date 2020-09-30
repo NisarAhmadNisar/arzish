@@ -6,14 +6,19 @@ import { ApolloProvider } from "react-apollo";
 import client from "./utils/apolloClient";
 import "./index.css";
 import ProductProvider from "./contextapi";
+import { AuthenticationProvider } from "./components/LoginRegister/autheticationapi";
+import ScrollToTopOnRouteChange from "./components/ReusableComponents/Scroll/scrollTop";
 
 ReactDOM.render(
-  <ProductProvider>
-    <Router>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
-    </Router>
-  </ProductProvider>,
+  <AuthenticationProvider>
+    <ProductProvider>
+      <Router>
+        <ApolloProvider client={client}>
+          <ScrollToTopOnRouteChange />
+          <App />
+        </ApolloProvider>
+      </Router>
+    </ProductProvider>
+  </AuthenticationProvider>,
   document.getElementById("root")
 );
