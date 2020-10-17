@@ -91,7 +91,7 @@ export default class Login extends Component {
                                   />
                                 </div>
                                 <div className="form_group">
-                                  <Link to="/signup">
+                                  <Link to="/signup" className="link-nav">
                                     <h2 className="text-capitalize">
                                       Want to Sign up instead?
                                     </h2>

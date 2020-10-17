@@ -23,7 +23,7 @@ export default class NavbarCoolLoggedIn extends Component {
                             className="navbar navbar-expand-lg navbar-light"
                             style={{ "background-color": "#f6f6f6" }}
                           >
-                            <Link to="/home">
+                            <Link to="/" className="link-nav">
                               <h1 className="navbar-brands"> Arzish </h1>
                             </Link>
                             <button

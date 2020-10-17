@@ -10,25 +10,27 @@
 }
 .containers .card {
   position: relative;
-  width: 32rem;
+  margin-left: 3rem;
+  width: 27rem;
   height: 32rem;
 
-  background: #232323;
+  background: #031617;
   border-radius: 20px;
   overflow: hidden;
   @include respond(tab-land) {
     width: 22rem;
-    height: 22rem;
+    height: 26rem;
   }
 }
 
 .containers .card:after {
   content: "Arzish";
   position: absolute;
-  top: 50%;
-  left: 10%;
-  font-size: 9rem;
-  font-weight: 800;
+  top: 60%;
+  left: 3%;
+  font-size: 7.3rem;
+  font-weight: 700;
+  font-family: $font-family-2;
   font-style: italic;
   color: rgba(255, 255, 255, 0.04);
 }
@@ -39,6 +41,9 @@
 
 .containers .card .imgBx {
   transition: all 1s ease;
+}
+.containers .card .imgBx .img {
+  height: 20rem;
 }
 
 .containers .card .contentBx {
@@ -61,14 +66,16 @@
 .containers .card .contentBx h2 {
   position: relative;
   font-weight: 600;
-  font-size: 2.4rem;
+  padding-bottom: 1rem;
+  font-size: 3rem;
+  font-family: $font-family-1;
   letter-spacing: 1px;
   color: #fff;
 }
 .containers .card .contentBx .price h3 {
   color: #fff;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.3rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-right: 0.6rem;
@@ -83,26 +90,26 @@
 .containers .card .contentBx .price span {
   color: #fff;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 .containers .card .contentBx .add {
   display: inline-block;
   padding: 0.7rem 1.3rem;
-  background: #fff;
-  border-radius: 4px;
+  // background: #eee;
+  border-radius: 7px;
   margin-top: 1rem;
   text-decoration: none;
   font-weight: 600;
   z-index: 100000;
-  color: #111;
+  color: #fff;
   opacity: 0;
   transform: translateY(4rem);
-
-  transition: 0.5s;
+  transition: all 0.5s;
   cursor: pointer;
 }
+
 .containers .card:hover .contentBx .add {
   opacity: 1;
   transform: translateY(0px);
-  transition-delay: 0.5s;
+  transition-delay: 0.2s;
 }

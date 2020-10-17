@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import "../../../src/customStyle/css/style.css";
-import "../../../src/index.css";
+// import "../../../src/index.css";
 
 export default class About extends Component {
   render() {

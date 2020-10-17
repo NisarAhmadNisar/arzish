@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Paypal from "../Paypal/Paypal";
+import ButtonContainer from "../ReusableComponents/Buttons/button";
+import ButtonRedGreen from "../ReusableComponents/Buttons/buttonred";
 
 export default function CartTotal({ value }) {
   const { cartSubTotal, cartTotal, cartTax, clearCart } = value;
@@ -10,15 +12,21 @@ export default function CartTotal({ value }) {
         <div className="row">
           <div className="col-10 mt-2 ml-sm-5 ml-md-auto col-sm-8 text-capitalize text-right">
             <Link to="/shop">
-              <button
-                type="button"
-                className="btn btn-outline-danger text-uppercase mb-3 px-5"
+              <ButtonRedGreen
+                red
+                className="add"
                 onClick={() => {
                   clearCart();
                 }}
               >
+                Clear Cart
+              </ButtonRedGreen>
+              {/* <button
+                type="button"
+                className="btn btn-outline-danger text-uppercase mb-3 px-5"
+              >
                 clear cart
-              </button>
+              </button> */}
             </Link>
             <h5>
               <span className="text-title">subtotal :</span>
@@ -33,9 +41,9 @@ export default function CartTotal({ value }) {
               <strong>$ {cartTotal}</strong>
             </h5>
             <Link to="/shippingaddress">
-              <button className="btn btn-outline-primary text-uppercase text-center px-1 mb-4">
+              <ButtonContainer className="add">
                 Continue to Checkout
-              </button>
+              </ButtonContainer>
             </Link>
           </div>
         </div>

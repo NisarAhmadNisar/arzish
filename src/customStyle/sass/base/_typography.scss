@@ -88,6 +88,8 @@ body {
 }
 .paragraph {
   font-size: $default-font-size;
+  color: #252526;
+
   &:not(:last-child) {
     margin-bottom: 3rem;
   }
@@ -96,8 +98,10 @@ body {
   font-family: $font-family-1;
   font-size: 1.4rem;
   margin-top: 1rem;
+  color: #252526;
 }
 .paragraph-2 {
   font-family: $font-family-1;
   font-size: 1.2rem;
+  color: #252526;
 }

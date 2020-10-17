@@ -14,12 +14,6 @@
 
   /* gradient color   */
   --sky: #26795f;
-  /*      theme font-family   */
-  --Abel: "Abel", cursive;
-  --Anton: "Anton", cursive;
-  --Josefin: "Josefin", cursive;
-  --Lexend: "Lexend", cursive;
-  --Livvic: "Livvic", cursive;
 }
 
 /* ---------------- Global Classes ---------------*/
@@ -60,6 +54,7 @@ button.btn {
 
 .text-gray {
   color: $color-grey-light-1;
+  font-size: 1.7rem;
 }
 
 /* ------x------- Global Classes -------x-------*/
@@ -90,9 +85,16 @@ button.btn {
 
 .nav-links:hover {
   background-color: $color-primary;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: #ffffff;
+  }
 }
 
 .nav-links:hover .Links {
+  color: $color-white;
+}
+.nav-links:hover .Links-cart {
   color: $color-white;
 }
 
@@ -100,16 +102,32 @@ button.btn {
   color: $color-black;
   text-transform: capitalize;
 }
-.Links-cart:hover {
-  color: $color-primary;
-}
+// .Links-cart:hover {
+//   color: $color-primary;
+// }
 
 .navbar-brands {
-  font-size: 2.9rem;
+  font-size: 3.5rem;
   padding: 1rem 0;
-  display: block;
-  font-family: var(--Lexend);
+  font-family: $font-family-2;
+  font-weight: 700;
+
+  // color: #0f0f0f;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: #ffffff;
+  }
 }
+.link-nav:hover {
+  color: $color-white;
+}
+// .navbar-brands:hover,
+// .navbar-brands:hover,
+// .navbar-brands:hover,
+// .navbar-brands:hover,
+// .navbar-brands:hover {
+// }
 
 .social {
   padding: 1.4rem 0;
@@ -248,11 +266,11 @@ main .site-content .post-content > .post-image,
 
 main .site-content .post-content > .post-image .post-info {
   background: var(--sky);
-  padding: 1rem;
+  padding: 0.3rem;
   position: absolute;
   bottom: 0%;
   left: 20vw;
-  border-radius: 3rem;
+  border-radius: 2rem;
 }
 
 main .site-content .post-content > .post-image > div {
@@ -317,11 +335,13 @@ main .site-contents {
 
 .site-contents > .sidebar .category-list .list-items {
   background: var(--sky);
-  padding: 0.4rem 1rem;
-  margin: 0.8rem 0;
+  padding: 0.01rem 0.3rem;
+  margin: 0.4rem 0;
+  font-size: 1.7rem;
   border-radius: 3rem;
-  width: 70%;
+  width: 55%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   transition: all 0.4s ease-in-out;
 }
@@ -384,7 +404,8 @@ main .site-contents {
 .site-contents .sidebar .popular-tags .tags .tag {
   background: var(--sky);
   padding: 0.4rem 1rem;
-  border-radius: 3rem;
+  border-radius: 2rem;
+  font-size: 1.3rem;
   margin: 0.4rem 0.6rem;
   color: $color-grey-light-1;
 }

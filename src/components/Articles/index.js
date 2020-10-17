@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../src/index.css";
+// import "../../../src/index.css";
 // import Query from "../../components/Query";
 // import ARTICLE_QUERY from "../../queries/article/article";
 // import { useParams } from "react-router-dom";

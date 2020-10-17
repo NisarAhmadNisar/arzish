@@ -15,7 +15,7 @@ export default class SignUp extends Component {
     return (
       <AuthenticationConsumer>
         {authValue => {
-          const { email, password, name } = authValue;
+          const { email, password, username } = authValue;
           const { handleSignUpChange, handleSignUpSubmit } = authValue;
           return (
             <ProductConsumer>
@@ -35,18 +35,26 @@ export default class SignUp extends Component {
                                 onSubmit={handleSignUpSubmit}
                               >
                                 <div className="u-margin-bottom-medium">
-                                  <h2 className="heading-secondary">Sign Up</h2>
+                                  <h2 className="heading-secondary">
+                                    {/* <img
+                                      height="40"
+                                      width="50"
+                                      src="icons/user-plus-solid.svg"
+                                      alt=""
+                                    /> */}
+                                    Sign Up
+                                  </h2>
                                 </div>
 
                                 <div className="form_group">
                                   <input
                                     type="text"
-                                    name="name"
+                                    name="username"
                                     id="username"
                                     className="form_input"
                                     placeholder="User Name"
                                     onChange={handleSignUpChange}
-                                    value={name}
+                                    value={username}
                                     required
                                   />
                                   <label
@@ -103,7 +111,7 @@ export default class SignUp extends Component {
                                   />
                                 </div>
                                 <div className="form_group">
-                                  <Link to="/login">
+                                  <Link to="/login" className="link-nav">
                                     <h2 className="text-capitalize">
                                       Want to Login instead?
                                     </h2>

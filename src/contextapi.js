@@ -36,7 +36,11 @@ export default class ProductProvider extends Component {
     cartTotal: 0,
     cartSubTotal: 0,
     cartTax: 0,
-    search: ""
+    search: "",
+    loading: false,
+    currentProducts: [],
+    currentPage: 1,
+    productsPerPage: 6
   };
 
   // the setProducts will get values from the db/file so that we dont modify the original db data
@@ -200,17 +204,34 @@ export default class ProductProvider extends Component {
     UIkit.notification({
       message: "<span uk-icon='icon: check'></span> Item added to the cart!",
       status: "success",
-      pos: "top-center",
-      timeout: 2500
+      pos: "top-left",
+      timeout: 2000
+    });
+  };
+
+  //Paginate function
+  paginate = pageNumber => {
+    this.setState({
+      currentPage: pageNumber
     });
   };
 
   //Render method
   render() {
+    //Pagination
+    // get current post
+    const indexOfLastProduct =
+      this.state.currentPage * this.state.productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - this.state.productsPerPage;
+    const currentProducts = this.state.products.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
     return (
       <ProductContext.Provider
         value={{
           ...this.state,
+          currentProducts: currentProducts,
           handleDetail: this.handleDetail,
           addToCart: this.addToCart,
           openModal: this.openModal,
@@ -220,7 +241,8 @@ export default class ProductProvider extends Component {
           removeItem: this.removeItem,
           clearCart: this.clearCart,
           updateSearch: this.updateSearch,
-          notify: this.notify
+          notify: this.notify,
+          paginate: this.paginate
         }}
       >
         {this.props.children}

@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-export default function OwlCarousels() {
+export default function OwlCarousels({ value, values }) {
+  const [items, setItems] = useState([]);
   useEffect(() => {
     AOS.init();
   });
+
   const responsive = {
     0: {
       items: 1
@@ -27,85 +30,54 @@ export default function OwlCarousels() {
     }
   };
   return (
-    <OwlCarousel
-      className="owl-theme"
-      loop
-      nav
-      autoplay={true}
-      autoplayTimeout={4000}
-      autoplayHoverPause={true}
-      responsive={responsive}
-      dots={false}
-    >
-      <div
-        className=" item carousel-container"
-        data-aos="fade-right"
-        data-aos-delay="200"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1580247310131-2927f7f0c97e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-          alt="post-1"
-          className="img-owl-carousel"
-        />
-        <div className="item-header">
-          <h3 className="header-tertiary-1">
-            London Fashion week's continued the evolution
-          </h3>
-          <button className="btn btn-green">Add To Cart</button>
-        </div>
-      </div>
+    <React.Fragment>
+      {values.map(product => {
+        return (
+          <div style={{ display: "none" }} key={product.id}>
+            {product.img.map(img => {
+              return items.push(
+                <div key={product.id} className="item carousel-container">
+                  <div data-aos="fade-right" data-aos-delay="200">
+                    <Link to={`/details/${product.id}`}>
+                      <img
+                        src={process.env.REACT_APP_BACKEND_URL + img.url}
+                        alt="post-1"
+                        className="img-owl-carousel"
+                      />
+                    </Link>
 
-      <div
-        className=" item carousel-container"
-        data-aos="fade-in"
-        data-aos-delay="200"
+                    <div className="item-header">
+                      <h3 className="header-tertiary-1">{product.title}</h3>
+                      <h3 className="header-tertiary-2">
+                        Price: {product.price}$
+                      </h3>
+
+                      <Link to="/shop">
+                        <button className="btn btn-green-small-1 text-capitalize">
+                          Check Products
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+      <OwlCarousel
+        className="owl-theme"
+        autoplay={true}
+        autoplayTimeout={4000}
+        autoplayHoverPause={true}
+        responsive={responsive}
+        dots={false}
+        onRefresh={true}
+        items={3}
+        loop
       >
-        <img
-          src="https://images.unsplash.com/photo-1580247310131-2927f7f0c97e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-          alt="post-1"
-          className="img-owl-carousel"
-        />
-        <div className="item-header">
-          <h3 className="header-tertiary-1">
-            London Add To Cart week's continued the evolution
-          </h3>
-          <button className="btn btn-green ">Add To Cart</button>
-        </div>
-      </div>
-      <div
-        className=" item carousel-container"
-        data-aos="fade-left"
-        data-aos-delay="200"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1580247310131-2927f7f0c97e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-          alt="post-1"
-          className="img-owl-carousel"
-        />
-        <div className="item-header">
-          <h3 className="header-tertiary-1">
-            London Add To Cart week's continued the evolution
-          </h3>
-          <button className="btn btn-green ">Add To Cart</button>
-        </div>
-      </div>
-      <div
-        className=" item carousel-container"
-        data-aos="fade-right"
-        data-aos-delay="200"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1580247310131-2927f7f0c97e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-          alt="post-1"
-          className="img-owl-carousel"
-        />
-        <div className="item-header">
-          <h3 className="header-tertiary-1">
-            London Add To Cart week's continued the evolution
-          </h3>
-          <button className="btn btn-green">Add To Cart</button>
-        </div>
-      </div>
-    </OwlCarousel>
+        {items}
+      </OwlCarousel>
+    </React.Fragment>
   );
 }

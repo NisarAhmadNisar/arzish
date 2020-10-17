@@ -42,7 +42,7 @@
 }
 
 .section-book {
-  padding: 2rem 0;
+  // padding: 2rem 0;
   // background-image: linear-gradient(
   //   to right bottom,
   //   $color-grey-light-1,
@@ -80,7 +80,10 @@
 
   &_form {
     width: 50%;
-    padding: 6rem;
+    padding: 1rem;
+    position: relative;
+    top: 50%;
+    left: 20%;
 
     @include respond(tab-land) {
       width: 65%;

@@ -4,7 +4,7 @@
   --mainWhite: #f3f3f3;
   --mainDark: #232528;
   --mainYellow: #ffa400;
-  --mainRed: #d90416;
+  --mainRed: #bc0d35;
   --lightRed: #d90432;
   --mainGreen: #025939;
 }
@@ -35,5 +35,5 @@
 .cart-icon {
   cursor: pointer;
   font-size: 1.2rem;
-  color: var(--mainYellow);
+  color: var(--mainRed);
 }

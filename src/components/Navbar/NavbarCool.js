@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import $ from "jquery";
 import { findDOMNode } from "react-dom";
+// import "semantic-ui-css/semantic.min.css";
 import { Link } from "react-router-dom";
 import "../../../src/index.css";
 
@@ -12,7 +13,7 @@ export default class NavbarCool extends Component {
           className="navbar navbar-expand-lg navbar-light"
           style={{ "background-color": "#f6f6f6" }}
         >
-          <Link to="/home">
+          <Link to="/" className="link-nav">
             <h1 className="navbar-brands"> Arzish </h1>
           </Link>
           <button
@@ -59,7 +60,7 @@ export default class NavbarCool extends Component {
                   <i class="fa fa-shopping-cart" aria-hidden="true"></i>My Cart
                 </span>
               </Link>
-              <Link to="/login" className="nav-links ">
+              <Link to="/login" className="nav-links">
                 <span className="Links">Login</span>
               </Link>
               <Link to="/signup" className="nav-links">

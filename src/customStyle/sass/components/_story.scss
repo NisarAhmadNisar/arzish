@@ -44,7 +44,7 @@
 
   &_text {
     // transform: skewX(12deg);
-
+    color: #252526;
     @include respond(phone) {
       transform: skewX(0);
     }

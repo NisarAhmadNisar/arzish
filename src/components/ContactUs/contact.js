@@ -91,15 +91,6 @@ export default class Contact extends Component {
                   <p className="paragraph-2">+9352656255</p>
                 </div>
               </div>
-              <div className="box">
-                <div className="icon">
-                  <i class="fas fa-phone-square"></i>
-                </div>
-                <div className="text">
-                  <h3 className="header-tertiary-2">Phone</h3>
-                  <p className="paragraph-2">00962526523</p>
-                </div>
-              </div>
             </div>
 
             <section className="section-book">
@@ -149,7 +140,7 @@ export default class Contact extends Component {
                           name="message"
                           id="message"
                           className="form_input"
-                          placeholder="Write a message..."
+                          placeholder="Write your query..."
                           rows="5"
                           value={message}
                           onChange={handleChange}

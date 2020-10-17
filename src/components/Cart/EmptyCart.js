@@ -10,10 +10,7 @@ export default function EmptyCart() {
           <h3 className="text-title">
             Looks like you have no items in your shopping cart
           </h3>
-          <img
-            src="https://cdn.dribbble.com/users/204955/screenshots/4930541/emptycart.png"
-            alt="Empty Cart Icon"
-          />
+          <img src="img/emptycart.webp" alt="Empty Cart Icon" />
           <h2 className="text-title">
             Click<Link to="shop"> here</Link> to continue shopping{" "}
           </h2>

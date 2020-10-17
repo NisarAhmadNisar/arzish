@@ -7,11 +7,12 @@ const AuthenticationContext = createContext();
 export default class AuthenticationProvider extends Component {
   state = {
     name: "",
+    username: "",
     email: "",
     password: "",
     bio: "",
     oneLiner: "",
-    country: "",
+    country: null,
     state: "",
     phoneNumber: "",
     city: "",
@@ -26,28 +27,56 @@ export default class AuthenticationProvider extends Component {
     proceedToCheckout: false,
     isLogged: false,
     isSignedUp: false,
-    error: {}
+    error: {},
+    imgUrl: "",
+    imageID: 0,
+    profileName: "",
+    profileEmail: "",
+    porfileAddress: ""
   };
 
+  // ##############################################################################################
+  //LIFECYCLE FUNC
   async componentDidMount() {
     console.log("componentdidmounted");
     const userRes = await axios({
       method: "GET",
-      url: "/users/me"
+      url: "/api/users/me"
     });
     console.log("users/me authentication.js", userRes);
     if (userRes.data) {
-      this.setState({ user: { user: userRes.data }, isLogged: true });
-    }
+      const { image, username } = userRes.data;
 
-    // if (localStorage.getItem("user")) {
-    //   const user = JSON.parse(localStorage.getItem("user"));
-    //   this.setState({ user });
-    // }
+      this.setState({
+        user: { user: userRes.data },
+        isLogged: true
+      });
+      console.log("image", image);
+    }
+    //getting the image of the profile
+    const { imageID } = userRes.data;
+    if (imageID !== 0) {
+      const get_uploads = await axios({
+        method: "GET",
+        url: process.env.REACT_APP_BACKEND_URL + `/upload/files/${imageID}`
+      });
+      console.log("GET UPLOAD FILES : ", get_uploads.data.url);
+      this.setState({
+        imgUrl: get_uploads.data.url
+      });
+    }
   }
+  // componentDidUpdate(prevProps, prevState) {
+  //   // Typical usage (don't forget to compare props):
+  //   if (this.state.imageID !== prevState.imageID) {
+  //     console.log("didupdate called");
+  //   }
+  // }
+
+  // ##############################################################################################
+  // LOGIN/SIGNUP/LOGOUT FUNC
 
   // logout func
-
   logout = async () => {
     await axios({
       method: "GET",
@@ -134,11 +163,11 @@ export default class AuthenticationProvider extends Component {
     // //   sign up and login user with strapi
 
     try {
-      const { email, password, name } = this.state;
+      const { email, password, username } = this.state;
       const data = {
+        username,
         email,
-        password,
-        username: name
+        password
       };
       let res = await axios({
         method: "post",
@@ -157,13 +186,22 @@ export default class AuthenticationProvider extends Component {
     }
   };
 
-  //Profile Submit
+  // ##############################################################################################
+
+  //PROFILE FUNC
+
   handleProfileUpdateChange = e => {
     const { name, value } = e.target;
+
     this.setState({ [name]: value });
     console.log("handleProfileUpdateChange /userprofile ", e.target.value);
   };
-
+  handleProfileFileChange = e => {
+    console.log("target file", e.target.files[0]);
+    this.setState({
+      image: e.target.files[0]
+    });
+  };
   handleProfileUpdateSubmit = async e => {
     // this jwt token will be saved in express server and send back to react so that it is secured
     // const jwtToken = this.props.user.jwt;
@@ -171,50 +209,113 @@ export default class AuthenticationProvider extends Component {
 
     try {
       const userId = this.state.user.user.id;
-
-      const { bio, oneLiner } = this.state;
-
-      const data = {
-        bio,
-        fav_oneliner: oneLiner
-      };
+      // const jwtToken = this.props.user.jwt;
+      // console.log(jwtToken);
+      const { bio, oneLiner, image, name, email } = this.state;
+      const data = { bio, image };
       const updateUserRes = await axios({
         method: "PUT",
-        url: `/users/${userId}`,
+        url: `/api/users/${userId}`,
         data
       });
-      console.log("update ", updateUserRes);
+      console.log("update", updateUserRes);
+      if (updateUserRes) {
+        console.log("update successfull");
+      }
     } catch (err) {
       console.log(err.response);
       return err.response;
     }
   };
 
-  //handle shipping
+  handleProfilePostSubmit = async e => {
+    // this jwt token will be saved in express server and send back to react so that it is secured
+    // const jwtToken = this.props.user.jwt;
+    e.preventDefault();
+    console.log("files submiteed");
+    console.log(this.state.image);
 
+    const data = new FormData();
+    data.append("files", this.state.image);
+    data.get("files");
+    console.log("data from submit", data);
+
+    try {
+      let res = await axios({
+        method: "post",
+        url: process.env.REACT_APP_BACKEND_URL + "/upload",
+        data: data
+      });
+      const id = res.data[0].id;
+
+      const get_uploads = await axios({
+        method: "GET",
+        url: process.env.REACT_APP_BACKEND_URL + `/upload/files/${id}`,
+        data
+      });
+      console.log("GET UPLOAD FILES : ", get_uploads.data.url);
+      this.setState({
+        imgUrl: get_uploads.data.url
+      });
+      const userId = this.state.user.user.id;
+
+      const updateUserImageID = await axios({
+        method: "PUT",
+        url: `/api/users/${userId}`,
+        data: { imageID: id }
+      });
+      console.log("upddateuser image id", updateUserImageID);
+
+      if (res) {
+        console.log(res);
+        console.log("uploaded imagedata id", res.data[0].id);
+        console.log(get_uploads.data.url);
+      }
+    } catch (error) {
+      console.log(error.response); // this is the main part. Use the response property from the error object
+
+      return error.response;
+    }
+  };
+
+  // ##############################################################################################
+
+  //SHIPPING FUNC
+
+  handleShippingChangeOfCountryList = value => {
+    this.setState({ country: value });
+    console.log("country selected", value);
+  };
   handleShippingChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    console.log("Handlechange /orders ", e.target.value);
   };
-
-  // handleSubmit functions
   handleShippingSubmit = async e => {
     e.preventDefault();
-    console.log("handlesubmit /orders  called");
 
-    axios
-      .post("http://localhost:1337/orders", this.state)
-      .then(response => {
-        console.log("Data uploaded");
-
-        this.setState({
-          proceedToCheckout: true
-        });
-      })
-      .catch(error => {
-        console.log(error);
+    try {
+      const {
+        address,
+        landmark,
+        district,
+        zipcode,
+        city,
+        country
+      } = this.state;
+      const data = { address, landmark, district, zipcode, city, country };
+      const shippingRes = await axios({
+        method: "post",
+        url: process.env.REACT_APP_BACKEND_URL + "/shippingaddresses",
+        data
       });
+
+      if (shippingRes) {
+        console.log("shipping successfull", shippingRes);
+      }
+    } catch (err) {
+      console.log(err.response);
+      return err.response;
+    }
   };
 
   //end of user creation
@@ -228,13 +329,17 @@ export default class AuthenticationProvider extends Component {
           handleLoginChange: this.handleLoginChange,
           handleSignUpChange: this.handleSignUpChange,
           handleSignUpSubmit: this.handleSignUpSubmit,
+          handleShippingChangeOfCountryList: this
+            .handleShippingChangeOfCountryList,
           handleShippingSubmit: this.handleShippingSubmit,
           handleShippingChange: this.handleShippingChange,
           handleProfileUpdateChange: this.handleProfileUpdateChange,
           handleProfileUpdateSubmit: this.handleProfileUpdateSubmit,
+          handleProfilePostSubmit: this.handleProfilePostSubmit,
           logout: this.logout,
           notifyLogout: this.notifyLogout,
-          notifyLogin: this.notifyLogin
+          notifyLogin: this.notifyLogin,
+          handleProfileFileChange: this.handleProfileFileChange
         }}
       >
         {this.props.children}

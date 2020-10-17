@@ -1,11 +1,10 @@
 import React from "react";
-import Articles from "../Articles";
 import Article from "../Article";
 import Category from "../Category";
 import ProductList from "../../components/ProductList/ProductList";
 import Cart from "../../components/Cart";
 import Modal from "../../components/Modal/Modal";
-import PageNotFound from "../../components/Default/PageNotFound";
+import PageNotFound from "../../components/PageNotFound/PageNotFound";
 import { Switch, Route } from "react-router-dom";
 import TempDetails from "../../components/Details/tempDetails";
 import ProfilePage from "../../components/LoginRegister/ProfilePage";
