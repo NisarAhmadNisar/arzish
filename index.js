@@ -144,9 +144,15 @@ app.get("/api/products", async (req, res) => {
   res.send(productsRes.data);
 });
 
-app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname + "/frontend/build/index.html"))
-);
+
+-app.get('/', function (req, res) {
+  +app.get('/*', function (req, res) {
+     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+   });
+
+// app.get("/*", (req, res) =>
+//   res.sendFile(path.join(__dirname + "/frontend/build/index.html"))
+// );
 
 // Finished Setup
 app.listen(port, () =>
