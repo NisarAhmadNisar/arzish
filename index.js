@@ -162,8 +162,8 @@ app.get("/api/products", async (req, res) => {
 
 //build mode
 app.get("*", (req, res) => {
-  // res.sendFile(path.join(__dirname + "/frontend/public/index.html"));
-  res.send("hello");
+  res.sendFile(path.join(__dirname + "/frontend/build/index.html"));
+  // res.send("hello");
 });
 
 // Finished Setup
