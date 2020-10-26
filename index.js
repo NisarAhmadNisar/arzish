@@ -152,7 +152,7 @@ app.get("/api/products", async (req, res) => {
 
 app.get("/*", (req, res) => {
   console.log(`Directory is: ${__dirname}`);
-  exec("ls ./frontend2", (error, stdout, stderr) => {
+  exec("ls /", (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
       return;
@@ -161,7 +161,7 @@ app.get("/*", (req, res) => {
       console.log(`stderr: ${stderr}`);
       return;
     }
-    console.log(`stdout: ${stdout}`);
+    console.log(`stdout result is:\n ${stdout}`);
   });
   res.sendFile(path.join(__dirname + "/frontend2/build/index.html"));
 });
