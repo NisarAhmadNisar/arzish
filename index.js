@@ -152,7 +152,7 @@ app.get("/api/products", async (req, res) => {
 
 app.get("/*", (req, res) => {
   console.log(`Directory is: ${__dirname}`);
-  exec("pwd", (error, stdout, stderr) => {
+  exec("ls", (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
       return;
