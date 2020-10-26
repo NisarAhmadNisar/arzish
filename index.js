@@ -149,9 +149,10 @@ app.get("/api/products", async (req, res) => {
 //      res.sendFile(path.join(__dirname + "/frontend/build/index.html"));
 //    });
 
-app.get("/*", (req, res) =>
-  res.sendFile(path.join(__dirname + "/frontend/build/index.html"))
-);
+app.get("/*", (req, res) => {
+  console.log(`Directory is: ${__dirname}`);
+  res.sendFile(path.join(__dirname + "/frontend/build/index.html"));
+});
 
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static(path.join(__dirname, "frontend2/build")));
