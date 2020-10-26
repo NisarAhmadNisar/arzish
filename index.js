@@ -151,7 +151,7 @@ app.get("/api/products", async (req, res) => {
 
 app.get("/*", (req, res) => {
   console.log(`Directory is: ${__dirname}`);
-  res.sendFile(path.join(__dirname + "/frontend/build/index.html"));
+  res.sendFile(path.join(__dirname + "/frontend2/build/index.html"));
 });
 
 // if (process.env.NODE_ENV === "production") {
