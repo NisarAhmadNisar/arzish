@@ -151,6 +151,17 @@ app.get("/api/products", async (req, res) => {
 
 app.get("/*", (req, res) => {
   console.log(`Directory is: ${__dirname}`);
+  exec("pwd", (error, stdout, stderr) => {
+    if (error) {
+      console.log(`error: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.log(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
   res.sendFile(path.join(__dirname + "/frontend2/build/index.html"));
 });
 
