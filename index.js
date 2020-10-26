@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 const cookieParser = require("cookie-parser");
 const session = require("cookie-session");
+const { exec } = require("child_process");
 
 //Load input Validations
 const validateRegisterInput = require("./validator/register");
