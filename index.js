@@ -149,22 +149,22 @@ app.get("/api/products", async (req, res) => {
 //      res.sendFile(path.join(__dirname + "/frontend/build/index.html"));
 //    });
 
-// app.get("/*", (req, res) =>
-//   res.sendFile(path.join(__dirname + "/frontend/build/index.html"))
-// );
+app.get("/*", (req, res) =>
+  res.sendFile(path.join(__dirname + "/frontend/build/index.html"))
+);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "frontend2/build")));
-  app.get("*", (req, res) => {
-    res.sendfile(path.join((__dirname = "frontend2/build/index.html")));
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "frontend2/build")));
+//   app.get("*", (req, res) => {
+//     res.sendfile(path.join((__dirname = "frontend2/build/index.html")));
+//   });
+// }
 
-// build mode
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/frontend2/public/index.html"));
-  // res.send("hello");
-});
+// // build mode
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname + "/frontend2/public/index.html"));
+//   // res.send("hello");
+// });
 
 // app.get("/", (req, res) => {
 //   res.sendFile(path.join(__dirname, "/frontend2/build", "index.html"));
