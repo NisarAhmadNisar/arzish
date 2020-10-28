@@ -15,7 +15,7 @@ const API_URL = process.env.API_URL || "http://localhost:1337";
 //MiddleWares
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "frontend/build")));
+app.use(express.static(path.join(__dirname, "frontend2/build")));
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -145,7 +145,7 @@ app.get("/api/products", async (req, res) => {
 });
 
 app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname + "/frontend/build/index.html"))
+  res.sendFile(path.join(__dirname + "/frontend2/build/index.html"))
 );
 
 // Finished Setup
