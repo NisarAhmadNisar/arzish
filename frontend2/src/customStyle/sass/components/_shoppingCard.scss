@@ -1,0 +1,115 @@
+// .body {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   min-height: 100vh;
+// }
+
+.containers {
+  position: relative;
+}
+.containers .card {
+  position: relative;
+  margin-left: 3rem;
+  width: 27rem;
+  height: 32rem;
+
+  background: #031617;
+  border-radius: 20px;
+  overflow: hidden;
+  @include respond(tab-land) {
+    width: 22rem;
+    height: 26rem;
+  }
+}
+
+.containers .card:after {
+  content: "Arzish";
+  position: absolute;
+  top: 60%;
+  left: 3%;
+  font-size: 7.3rem;
+  font-weight: 700;
+  font-family: $font-family-2;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.04);
+}
+
+.containers .card:hover .imgBx {
+  transform: scale(1.3);
+}
+
+.containers .card .imgBx {
+  transition: all 1s ease;
+}
+.containers .card .imgBx .img {
+  height: 20rem;
+}
+
+.containers .card .contentBx {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 8rem;
+  text-align: center;
+  transition: all 1s ease;
+}
+
+.containers .card:hover .contentBx {
+  height: 19rem;
+  z-index: 9000;
+  @include respond(tab-land) {
+    height: 15rem;
+  }
+}
+
+.containers .card .contentBx h2 {
+  position: relative;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  font-size: 3rem;
+  font-family: $font-family-1;
+  letter-spacing: 1px;
+  color: #fff;
+}
+.containers .card .contentBx .price h3 {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-right: 0.6rem;
+  opacity: 0;
+  visibility: hidden;
+}
+.containers .card:hover .contentBx .price h3 {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.5s;
+}
+.containers .card .contentBx .price span {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+.containers .card .contentBx .add {
+  display: inline-block;
+  padding: 0.7rem 1.3rem;
+  // background: #eee;
+  border-radius: 7px;
+  margin-top: 1rem;
+  text-decoration: none;
+  font-weight: 600;
+  z-index: 100000;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(4rem);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.containers .card:hover .contentBx .add {
+  opacity: 1;
+  transform: translateY(0px);
+  transition-delay: 0.2s;
+}
