@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Query from "../../components/Query";
-import ReactMarkdown from "react-markdown";
 import ARTICLE_QUERY from "../../queries/article/article";
 import PostForm from "../../components/PostForm";
 import AllComments from "../../components/PostForm/allComments";
