@@ -10,7 +10,7 @@ const session = require("cookie-session");
 const validateRegisterInput = require("./validator/register");
 
 const port = process.env.PORT || 5000;
-const API_URL = process.env.API_URL || "http://localhost:1337";
+const API_URL = process.env.STRAPI_API_URL;
 
 //MiddleWares
 app.use(express.json());
