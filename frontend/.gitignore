@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/fullstack-tutorial
 /.pnp
 .pnp.js
 .env.development
@@ -22,4 +23,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/fullstack-tutorial
