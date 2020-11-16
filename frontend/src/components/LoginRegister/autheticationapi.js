@@ -158,14 +158,12 @@ export default class AuthenticationProvider extends Component {
   handleSignUpSubmit = async e => {
     e.preventDefault();
 
-    console.log("signupsubmit called");
-
     // //   sign up and login user with strapi
 
     try {
-      const { email, password, username } = this.state;
+      const { email, password } = this.state;
       const data = {
-        username,
+        username: email,
         email,
         password
       };
@@ -178,6 +176,8 @@ export default class AuthenticationProvider extends Component {
       if (res.data) {
         this.setState({ user: res.data, isLogged: true, isSignedUp: true });
       }
+      console.log("signupsubmit called");
+
       return console.log(res.data);
     } catch (error) {
       console.log(error.response); // this is the main part. Use the response property from the error object

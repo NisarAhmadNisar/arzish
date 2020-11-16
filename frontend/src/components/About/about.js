@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-// import "../../../src/customStyle/css/style.css";
-// import "../../../src/index.css";
+import { Link } from "react-router-dom";
 
 export default class About extends Component {
   render() {
@@ -13,9 +12,9 @@ export default class About extends Component {
                 <span className="header-primary-main"> Arzish </span>
                 <span className="header-primary-sub">where life happens</span>
               </h1>
-              <a href="#section-tours" className="btn btn-white btn-animated">
+              <Link to="/shop" className="btn btn-white btn-animated">
                 Discover Your Choice
-              </a>
+              </Link>
             </div>
           </header>
 

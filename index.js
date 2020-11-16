@@ -10,7 +10,7 @@ const session = require("cookie-session");
 const validateRegisterInput = require("./validator/register");
 
 const port = process.env.PORT || 5000;
-const API_URL = process.env.STRAPI_API_URL;
+const API_URL = process.env.STRAPI_API_URL || "http://localhost:1337";
 
 //MiddleWares
 app.use(express.json());
@@ -143,6 +143,14 @@ app.get("/api/products", async (req, res) => {
   });
   res.send(productsRes.data);
 });
+
+// app.get("/api/graphql", async (req, res) => {
+//   const productsRes = await axios({
+//     method: "GET",
+//     url: `${API_URL}/graphql`
+//   });
+//   res.send(productsRes.data);
+// });
 
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname + "/frontend/build/index.html"))

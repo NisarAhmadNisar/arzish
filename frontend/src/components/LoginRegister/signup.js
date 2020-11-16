@@ -46,7 +46,7 @@ export default class SignUp extends Component {
                                   </h2>
                                 </div>
 
-                                <div className="form_group">
+                                {/* <div className="form_group">
                                   <input
                                     type="text"
                                     name="username"
@@ -63,7 +63,7 @@ export default class SignUp extends Component {
                                   >
                                     User Name
                                   </label>
-                                </div>
+                                </div> */}
 
                                 <div className="form_group">
                                   <input
